@@ -1,0 +1,3 @@
+
+/* data tb */
+.data_tb tbody tr td:not(:first-child){line-height:32px;}
