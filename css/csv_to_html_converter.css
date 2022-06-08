@@ -1,0 +1,22 @@
+.tr_first{
+	color:#333;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+	font-weight:bold;
+}
+div.h_text{
+	text-align:center;
+	font-size:18px;
+	padding:5px;
+}
+#code1,#code2{
+	height:740px;
+	font-size:14px;
+	border-bottom:2px solid #999;
+}
+.ui-resizable-s{height:10px;}
+@media (max-width : 980px) {
+	div.h_text{text-align:left;}
+	#code1,#code2{height:400px;}
+	#max_code1,#max_code2{display:none;}
+}
