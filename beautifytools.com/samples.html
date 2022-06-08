@@ -1,0 +1,466 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Mirrored from beautifytools.com/samples.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 04 Jun 2022 10:28:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>var __ez=__ez||{};__ez.stms=Date.now();__ez.evt={};__ez.script={};__ez.ck=__ez.ck||{};__ez.template={};__ez.template.isOrig=true;__ez.queue=(function(){var count=0,incr=0,items=[],timeDelayFired=false,hpItems=[],lpItems=[],allowLoad=true;var obj={func:function(name,funcName,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError){var self=this;this.name=name;this.funcName=funcName;this.parameters=parameters===null?null:(parameters instanceof Array)?parameters:[parameters];this.isBlock=isBlock;this.blockedBy=blockedBy;this.deleteWhenComplete=deleteWhenComplete;this.isError=false;this.isComplete=false;this.isInitialized=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){log("... func = "+name);self.isInitialized=true;self.isComplete=true;log("... func.apply: "+name);var funcs=self.funcName.split('.');var func=null;if(funcs.length>3){}else if(funcs.length===3){func=window[funcs[0]][funcs[1]][funcs[2]];}else if(funcs.length===2){func=window[funcs[0]][funcs[1]];}else{func=window[self.funcName];}
+if(typeof func!=='undefined'&&func!==null){func.apply(null,this.parameters);}
+if(self.deleteWhenComplete===true)delete items[name];if(self.isBlock===true){log("----- F'D: "+self.name);processAll();}}},file:function(name,path,isBlock,blockedBy,async,defer,proceedIfError){var self=this;this.name=name;this.path=path;this.async=async;this.defer=defer;this.isBlock=isBlock;this.blockedBy=blockedBy;this.isInitialized=false;this.isError=false;this.isComplete=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){self.isInitialized=true;log("... file = "+name);var scr=document.createElement('script');scr.src=path;if(async===true)scr.async=true;else if(defer===true)scr.defer=true;scr.onerror=function(){log("----- ERR'D: "+self.name);self.isError=true;if(self.isBlock===true){processAll();}};scr.onreadystatechange=scr.onload=function(){var state=scr.readyState;log("----- F'D: "+self.name);if((!state||/loaded|complete/.test(state))){self.isComplete=true;if(self.isBlock===true){processAll();}}};document.getElementsByTagName('head')[0].appendChild(scr);}},fileLoaded:function(name,isComplete){this.name=name;this.path="";this.async=false;this.defer=false;this.isBlock=false;this.blockedBy=[];this.isInitialized=true;this.isError=false;this.isComplete=isComplete;this.proceedIfError=false;this.isTimeDelay=false;this.process=function(){};}};function init(){window.addEventListener("load",function(){setTimeout(function(){timeDelayFired=true;log('TDELAY -----');processAll();},5000);},false);}
+function addFile(name,path,isBlock,blockedBy,async,defer,proceedIfError,priority){var item=new obj.file(name,path,isBlock,blockedBy,async,defer,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+items[name]=item;checkIfBlocked(item);}
+function setallowLoad(settobool){allowLoad=settobool}
+function addFunc(name,func,parameters,isBlock,blockedBy,autoInc,deleteWhenComplete,proceedIfError,priority){if(autoInc===true)name=name+"_"+incr++;var item=new obj.func(name,func,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+items[name]=item;checkIfBlocked(item);}
+function addTimeDelayFile(name,path){var item=new obj.file(name,path,false,[],false,false,true);item.isTimeDelay=true;log(name+' ... '+' FILE! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+function addTimeDelayFunc(name,func,parameters){var item=new obj.func(name,func,parameters,false,[],true,true);item.isTimeDelay=true;log(name+' ... '+' FUNCTION! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+function checkIfBlocked(item){if(isBlocked(item)===true||allowLoad==false)return;item.process();}
+function isBlocked(item){if(item.isTimeDelay===true&&timeDelayFired===false){log(item.name+" blocked = TIME DELAY!");return true;}
+if(item.blockedBy instanceof Array){for(var i=0;i<item.blockedBy.length;i++){var block=item.blockedBy[i];if(items.hasOwnProperty(block)===false){log(item.name+" blocked = "+block);return true;}else if(item.proceedIfError===true&&items[block].isError===true){return false;}else if(items[block].isComplete===false){log(item.name+" blocked = "+block);return true;}}}
+return false;}
+function markLoaded(filename){if(!filename||0===filename.length){return;}
+if(filename in items){var item=items[filename];if(item.isComplete===true){log(item.name+' '+filename+': error loaded duplicate')}else{item.isComplete=true;item.isInitialized=true;}}else{items[filename]=new obj.fileLoaded(filename,true);}
+log("markLoaded dummyfile: "+items[filename].name);}
+function logWhatsBlocked(){for(var i in items){if(items.hasOwnProperty(i)===false)continue;var item=items[i];isBlocked(item)}}
+function log(msg){var href=window.location.href;var reg=new RegExp('[?&]ezq=([^&#]*)','i');var string=reg.exec(href);var res=string?string[1]:null;if(res==="1")console.debug(msg);}
+function processAll(){count++;if(count>200)return;log("let's go");processItems(hpItems);processItems(lpItems);}
+function processItems(list){for(var i in list){if(list.hasOwnProperty(i)===false)continue;var item=list[i];if(item.isComplete===true||isBlocked(item)||item.isInitialized===true||item.isError===true){if(item.isError===true){log(item.name+': error')}else if(item.isComplete===true){log(item.name+': complete already')}else if(item.isInitialized===true){log(item.name+': initialized already')}}else{item.process();}}}
+init();return{addFile:addFile,addDelayFile:addTimeDelayFile,addFunc:addFunc,addDelayFunc:addTimeDelayFunc,items:items,processAll:processAll,setallowLoad:setallowLoad,markLoaded:markLoaded,logWhatsBlocked:logWhatsBlocked,};})();__ez.evt.add=function(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n()},__ez.evt.remove=function(e,t,n){e.removeEventListener?e.removeEventListener(t,n,!1):e.detachEvent?e.detachEvent("on"+t,n):delete e["on"+t]};__ez.script.add=function(e){var t=document.createElement("script");t.src=e,t.async=!0,t.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(t)};__ez.dot={};__ez.queue.addFile('detroitchicago/boise.js', 'detroitchicago/boise7697.js?gcb=195-0&amp;cb=1', true, [], true, false, true, false);__ez.queue.addFile('detroitchicago/memphis.js', 'detroitchicago/memphis1dcc.js?gcb=195-0&amp;cb=14', true, [], true, false, true, false);__ez.queue.addFile('detroitchicago/minneapolis.js', 'detroitchicago/minneapolis42b7.js?gcb=195-0&amp;cb=3', true, [], true, false, true, false);__ez.queue.addFile('detroitchicago/rochester.js', 'detroitchicago/rochester0d65.js?gcb=195-0&amp;cb=12', false, ['/detroitchicago/memphis.js','/detroitchicago/minneapolis.js'], true, false, true, false);__ez.vep=(function(){var pixels=[],pxURL="detroitchicago/grapefruit.gif";function AddPixel(vID,pixelData){if(__ez.dot.isDefined(vID)&&__ez.dot.isValid(pixelData)){pixels.push({type:'video',video_impression_id:vID,domain_id:__ez.dot.getDID(),t_epoch:__ez.dot.getEpoch(0),data:__ez.dot.dataToStr(pixelData)});}}
+function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender"){return;}
+if(__ez.dot.isDefined(pixels)&&pixels.length>0){while(pixels.length>0){var j=5;if(j>pixels.length){j=pixels.length;}
+var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(__ez.template.isOrig===true?1:0)+"&v="+btoa(JSON.stringify(pushPixels));__ez.dot.Fire(pixelURL);}}
+pixels=[];}
+return{Add:AddPixel,Fire:Fire};})();</script><script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>__ez.pel=(function(){var pixels=[],pxURL="porpoiseant/army.gif";function AddAndFirePixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0);Fire();}
+function AddAndFireOrigPixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0,true);Fire();}
+function GetCurrentPixels(){return pixels;}
+function AddPixel(adSlot,pixelData,revenue,est_revenue,bid_floor_filled,bid_floor_prev,stat_source_id,isOrig){if(!__ez.dot.isDefined(adSlot)||__ez.dot.isAnyDefined(adSlot.getSlotElementId,adSlot.ElementId)==false){return;}
+if(typeof isOrig==='undefined'){isOrig=false;}
+var ad_position_id=parseInt(__ez.dot.getTargeting(adSlot,'ap'));var impId=__ez.dot.getSlotIID(adSlot),adUnit=__ez.dot.getAdUnit(adSlot,isOrig);var compId=parseInt(__ez.dot.getTargeting(adSlot,"compid"));var lineItemId=0;var creativeId=0;var ezimData=getEzimData(adSlot);if(typeof ezimData=='object'){if(ezimData.creative_id!==undefined){creativeId=ezimData.creative_id;}
+if(ezimData.line_item_id!==undefined){lineItemId=ezimData.line_item_id;}}
+if(__ez.dot.isDefined(impId,adUnit)&&__ez.dot.isValid(pixelData)){if((impId!=="0"||isOrig===true)&&adUnit!==""){pixels.push({type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),revenue:revenue,est_revenue:est_revenue,ad_position:ad_position_id,ad_size:"",bid_floor_filled:bid_floor_filled,bid_floor_prev:bid_floor_prev,stat_source_id:stat_source_id,country_code:__ez.dot.getCC(),pageview_id:__ez.dot.getPageviewId(),comp_id:compId,line_item_id:lineItemId,creative_id:creativeId,data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig,});}}}
+function AddPixelById(impFullId,pixelData,isOrig,revenue){var vals=impFullId.split('index.html');if(__ez.dot.isDefined(impFullId)&&vals.length===3&&__ez.dot.isValid(pixelData)){var adUnit=vals[0],impId=vals[2];var pix={type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),pageview_id:__ez.dot.getPageviewId(),data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig};if(typeof revenue!=='undefined'){pix.revenue=revenue;}
+pixels.push(pix);}}
+function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender")return;if(__ez.dot.isDefined(pixels)&&pixels.length>0){var allPixels=[pixels.filter(function(pixel){return pixel.is_orig}),pixels.filter(function(pixel){return!pixel.is_orig})];allPixels.forEach(function(pixels){while(pixels.length>0){var isOrig=pixels[0].is_orig||false;var j=5;if(j>pixels.length){j=pixels.length;}
+var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(isOrig===true?1:0)+"&sts="+btoa(JSON.stringify(pushPixels));if(typeof window.isAmp!=='undefined'&&isAmp&&typeof window._ezaq!=='undefined'&&_ezaq.hasOwnProperty("domain_id")){pixelURL+="&visit_uuid="+_ezaq['visit_uuid'];}
+__ez.dot.Fire(pixelURL);}});}
+pixels=[];}
+function getEzimData(adSlot){if(typeof _ezim_d=="undefined"){return false;}
+var adUnitName=__ez.dot.getAdUnitPath(adSlot).split('index.html').pop();if(typeof _ezim_d==='object'&&_ezim_d.hasOwnProperty(adUnitName)){return _ezim_d[adUnitName];}
+for(var ezimKey in _ezim_d){if(ezimKey.split('index.html').pop()===adUnitName){return _ezim_d[ezimKey];}}
+return false;}
+return{Add:AddPixel,AddAndFire:AddAndFirePixel,AddAndFireOrig:AddAndFireOrigPixel,AddById:AddPixelById,Fire:Fire,GetPixels:GetCurrentPixels,};})();__ez.queue.addFile('detroitchicago/raleigh.js', 'detroitchicago/raleigh45f7.js?gcb=195-0&amp;cb=5', false, [], true, false, true, false);__ez.queue.addFile('detroitchicago/tampa.js', 'detroitchicago/tampa453e.js?gcb=195-0&amp;cb=4', false, [], true, false, true, false);</script>
+<script data-ezscrex="false" data-cfasync="false">(function(){if("function"===typeof window.CustomEvent)return!1;window.CustomEvent=function(c,a){a=a||{bubbles:!1,cancelable:!1,detail:null};var b=document.createEvent("CustomEvent");b.initCustomEvent(c,a.bubbles,a.cancelable,a.detail);return b}})();</script><script data-ezscrex="false" data-cfasync="false">__ez.queue.addFile('detroitchicago/tulsa.js', 'detroitchicago/tulsa45f7.js?gcb=195-0&amp;cb=5', false, [], true, false, true, false);</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Get Samples - BeautifyTools.com</title>
+<meta name="description" content="Get sample data to test our various tools."/>
+<link rel="shortcut icon" href="img/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="css/samples.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="css/common.css" media="all"/><link rel='canonical' href='samples.html' />
+<script type="text/javascript">var ezouid = "1";</script><base ><script type='text/javascript'>
+var ezoTemplate = 'old_site_noads';
+if(typeof ezouid == 'undefined')
+{
+    var ezouid = 'none';
+}
+var ezoFormfactor = '1';
+var ezo_elements_to_check = Array();
+</script><!-- START EZHEAD -->
+<script data-ezscrex="false" type='text/javascript'>
+var soc_app_id = '0';
+var did = 244621;
+var ezdomain = 'beautifytools.com';
+var ezoicSearchable = 1;
+</script>
+<!--{jquery}-->
+<!-- END EZHEAD -->
+<script data-ezscrex="false" type="text/javascript" data-cfasync="false">var _ezaq = {"ad_cache_level":0,"ad_lazyload_version":0,"ad_load_version":0,"city":"","country":"DZ","days_since_last_visit":-1,"domain_id":244621,"engaged_time_visit":0,"ezcache_level":2,"ezcache_skip_code":0,"form_factor_id":1,"framework_id":1,"is_return_visitor":false,"is_sitespeed":0,"last_page_load":"","last_pageview_id":"","lt_cache_level":0,"metro_code":0,"page_ad_positions":"","page_view_count":0,"page_view_id":"9d67e44e-ca22-4b70-72e9-81aa88819b73","position_selection_id":0,"postal_code":"","pv_event_count":0,"response_size_orig":23093,"response_time_orig":79,"serverid":"13.38.116.248:28803","state":"","t_epoch":1654338399,"template_id":120,"time_on_site_visit":0,"url":"https://beautifytools.com/samples.php","user_id":0,"weather_precipitation":0,"weather_summary":"","weather_temperature":0,"word_count":449,"worst_bad_word_level":0};var _ezExtraQueries = "&ez_orig=1";</script>
+<script data-ezscrex='false' data-pagespeed-no-defer data-cfasync='false'>
+function create_ezolpl(pvID, rv) {
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    __ez.ck.setByCat("ezux_lpl_244621=" + new Date().getTime() + "|" + pvID + "|" + rv + "; " + expires, 3);
+}
+function attach_ezolpl(pvID, rv) {
+    if (document.readyState === "complete") {
+        create_ezolpl(pvID, rv);
+    }
+    if(window.attachEvent) {
+        window.attachEvent("onload", create_ezolpl, pvID, rv);
+    } else {
+        if(window.onload) {
+            var curronload = window.onload;
+            var newonload = function(evt) {
+                curronload(evt);
+                create_ezolpl(pvID, rv);
+            };
+            window.onload = newonload;
+        } else {
+            window.onload = create_ezolpl.bind(null, pvID, rv);
+        }
+    }
+}
+
+__ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["9d67e44e-ca22-4b70-72e9-81aa88819b73", "false"], false, ['/detroitchicago/boise.js'], true, false, false, false);
+</script></head>
+<body>
+	<div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                	<div class="nav_bar">
+                        <div class="header_img">
+                            <a href="index.html" style="display:block;width:200px;height:60px;"></a>
+                        </div>
+                        <div class="header_nav">
+                            <ul class="nav_ul">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="#all_tools">All Tools</a></li>
+                                <li><a href="samples.html">Samples</a></li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="header_nav collapse_btn_nav">
+                            <ul class="nav_ul">
+                                <li><a href="#" class="collapse_btn"><span class="glyphicon glyphicon-menu-hamburger ham_icon" aria-hidden="true"></span><span style="display:none;" class="glyphicon glyphicon-remove remove_icon" aria-hidden="true"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        	<div class="row">
+            	<div class="col-md-12 text-center" style="padding-top:10px;">
+                	<!-- Ezoic - top_of_page - top_of_page -->
+                    <div id="ezoic-pub-ad-placeholder-117"> </div>
+                    <!-- End Ezoic - top_of_page - top_of_page -->
+                </div>
+            </div>
+        </div>	<div class="container-fluid">
+        <div class="row">
+        	<div class="col-md-12 text-center">
+            	<h1>Get Samples</h1>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+            	<p class="text-center">Select a sample and get sample data to test our various tools.</p>
+                <div class="well well-sm">
+                	<form class="form-inline text-center" style="margin:10px;">
+                    <fieldset>
+                    
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                      <label for="sample">Select a sample to get sample data: </label>
+                     	<select id="sample" name="sample" class="form-control">
+                        	<option value="css">css</option>
+                            <option value="csv">csv</option>
+                            <option value="html">html</option>
+                            <option value="javascript" selected="">javascript</option>
+                            <option value="json">json</option>
+                            <option value="opml">opml</option>
+                            <option value="php">php</option>
+                            <option value="sql">sql</option>
+                            <option value="xml">xml</option>
+                            <option value="yaml">yaml</option>
+                            <option value="less">less</option>
+                            <option value="rss">rss</option>
+                            <option value="sass">sass</option>
+                            <option value="scss">scss</option>
+                            <option value="stylus">stylus</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Button -->
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <button id="copy" name="copy" title="Copy Data" class="btn btn-info">Copy data</button>
+                      </div>
+                    </div>
+                    
+                    </fieldset>
+                    </form>
+                	<div id="code1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+    <div class="col-md-12 text-center">
+        <!-- Ezoic - mid_of_page - top_of_page -->
+        <div id="ezoic-pub-ad-placeholder-102"> </div>
+        <!-- End Ezoic - mid_of_page - top_of_page -->
+    </div>
+</div>
+<div class="row" id="all_tools">
+            <div class="col-md-12">
+                <div class="row" style="overflow:hidden;">
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_top12 - sidebar -->
+                            <div id="ezoic-pub-ad-placeholder-118"> </div>
+                            <!-- End Ezoic - sidebar_top12 - sidebar -->
+                        </div>
+					    <div class="app_cat_h" id="allToolsScrollToMobile">Beautifiers And Minifiers</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="css-beautifier.html">CSS Beautifier</a></li>
+                            <li><a href="css-minifier.html">CSS Minifier</a></li>
+                            <li><a href="html-beautifier.html">HTML Beautifier</a></li>
+                            <li><a href="html-minifier.html">HTML Minifier</a></li>
+                            <li><a href="javascript-beautifier.html">Javascript Beautifier</a></li>
+                            <li><a href="javascript-minifier.html">Javascript Minifier</a></li>
+                            <li><a href="javascript-obfuscator.html">Javascript Obfuscator</a></li>
+							<li><a href="json-beautifier.html">JSON Beautifier</a></li>
+							<li><a href="json-minifier.html">JSON Minifier</a></li>
+							<li><a href="opml-beautifier.html">OPML Beautifier</a></li>
+							<li><a href="opml-minifier.html">OPML Minifier</a></li>
+							<li><a href="php-beautifier.html">PHP Beautifier</a></li>
+                            <li><a href="xml-beautifier.html">XML Beautifier</a></li>
+							<li><a href="xml-minifier.html">XML Minifier</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_middle1 - sidebar_middle -->
+                            <div id="ezoic-pub-ad-placeholder-103"> </div>
+                            <!-- End Ezoic - sidebar_middle1 - sidebar_middle -->
+                        </div>
+						<div class="app_cat_h">CSS Preprocessors</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="less-compiler.html">LESS Compiler</a></li>
+							<li><a href="scss-compiler.html">SCSS Compiler</a></li>
+							<li><a href="sass-compiler.html">SASS Compiler</a></li>
+							<li><a href="stylus-compiler.html">Stylus Compiler</a></li>
+							<li><a href="css-to-less-converter.html">CSS To LESS Converter</a></li>
+							<li><a href="css-to-scss-converter.html">CSS To SCSS Converter</a></li>
+							<li><a href="css-to-stylus-converter.html">CSS To Stylus Converter</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_middle2 - sidebar_middle -->
+                            <div id="ezoic-pub-ad-placeholder-104"> </div>
+                            <!-- End Ezoic - sidebar_middle2 - sidebar_middle -->
+                        </div>
+                    	<div class="app_cat_h">Unit Converters</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="acceleration-converter.html">Acceleration Converter</a></li>
+                            <li><a href="area-converter.html">Area Converter</a></li>
+                            <li><a href="density-and-mass-capacity-converter.html">Density &amp; Mass Capacity Converter</a></li>
+							<li><a href="digital-storage-converter.html">Digital Storage Converter</a></li>
+                            <li><a href="electricity-converter.html">Electricity Converter</a></li>
+                            <li><a href="energy-converter.html">Energy Converter</a></li>
+                            <li><a href="force-converter.html">Force Converter</a></li>
+                            <li><a href="force-length-converter.html">Force / Length Converter</a></li>
+                            <li><a href="length-converter.html">Length Converter</a></li>
+                            <li><a href="light-converter.html">Light Converter</a></li>
+                            <li><a href="mass-converter.html">Mass Converter</a></li>
+                            <li><a href="mass-flow-converter.html">Mass Flow Converter</a></li>
+                            <li><a href="power-converter.html">Power Converter</a></li>
+                            <li><a href="pressure-and-stress-converter.html">Pressure &amp; Stress Converter</a></li>
+                            <li><a href="temperature-converter.html">Temperature Converter</a></li>
+                            <li><a href="time-converter.html">Time Converter</a></li>
+                            <li><a href="torque-converter.html">Torque Converter</a></li>
+                            <li><a href="velocity-and-speed-converter.html">Velocity &amp; Speed Converter</a></li>
+                            <li><a href="viscosity-converter.html">Viscosity Converter</a></li>
+                            <li><a href="volume-and-capacity-converter.html">Volume &amp; Capacity Converter</a></li>
+                            <li><a href="volume-flow-converter.html">Volume Flow Converter</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_bottom9 - sidebar_bottom -->
+                            <div id="ezoic-pub-ad-placeholder-113"> </div>
+                            <!-- End Ezoic - sidebar_bottom9 - sidebar_bottom -->
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_top13 - sidebar -->
+                            <div id="ezoic-pub-ad-placeholder-119"> </div>
+                            <!-- End Ezoic - sidebar_top13 - sidebar -->
+                        </div>
+                    	<div class="app_cat_h">Converters</div>
+                        <ul class="app_cat_ul">
+							<li><a href="csv-to-html-converter.html">CSV To HTML Converter</a></li>
+                            <li><a href="csv-to-json-converter.html">CSV To JSON Converter</a></li>
+                            <li><a href="csv-to-multi-line-data-converter.html">CSV To Multi Line Data Converter</a></li>
+                            <li><a href="csv-to-sql-converter.html">CSV To SQL Converter</a></li>
+                            <li><a href="csv-to-xml-converter.html">CSV To XML Converter</a></li>
+                            <li><a href="csv-to-xml-json-converter.html">CSV To XML / JSON Converter</a></li>
+                            <li><a href="excel-to-csv-converter.html">Excel To CSV Converter</a></li>
+                            <li><a href="excel-to-formula-view.html">Excel To Formula View</a></li>
+                            <li><a href="excel-to-html-converter.html">Excel To Html Converter</a></li>
+                            <li><a href="excel-to-json-converter.html">Excel To Json Converter</a></li>
+                            <li><a href="excel-to-sql-converter.html">Excel To SQL Converter</a></li>
+                            <li><a href="html-to-csv-converter.html">HTML Table To CSV Converter</a></li>
+							<li><a href="html-to-json-converter.html">HTML Table To JSON Converter</a></li>
+							<li><a href="html-to-multi-line-data-converter.html">HTML Table To Multi Line Data Converter</a></li>
+							<li><a href="html-to-sql-converter.html">HTML Table To SQL Converter</a></li>
+							<li><a href="html-to-xml-converter.html">HTML Table To XML Converter</a></li>
+                            <li><a href="json-to-csv-converter.html">JSON To CSV Converter</a></li>
+							<li><a href="json-to-html-table-converter.html">JSON To HTML TABLE Converter</a></li>
+                            <li><a href="json-to-xml-converter.html">JSON To XML Converter</a></li>
+                            <li><a href="json-to-yaml-converter.html">JSON To YAML Converter</a></li>
+                            <li><a href="opml-to-json-converter.html">OPML To JSON Converter</a></li>
+							<li><a href="rss-to-json-converter.html">RSS To JSON Converter</a></li>
+                            <li><a href="sql-to-csv-converter.html">SQL To CSV Converter</a></li>
+                            <li><a href="sql-to-html-converter.html">SQL To HTML Converter</a></li>
+                            <li><a href="sql-to-json-converter.html">SQL To JSON Converter</a></li>
+                            <li><a href="sql-to-xml-converter.html">SQL To XML Converter</a></li>
+                            <li><a href="sql-to-yaml-converter.html">SQL To YAML Converter</a></li>
+                            <li><a href="xml-to-csv-converter.html">XML To CSV Converter</a></li>
+                            <li><a href="xml-to-json-converter.html">XML To JSON Converter</a></li>
+                            <li><a href="xml-to-yaml-converter.html">XML To YAML Converter</a></li>
+                            <li><a href="yaml-to-xml-json-csv-converter.html">YAML To XML / JSON / CSV Converter</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_middle3 - sidebar_middle -->
+                            <div id="ezoic-pub-ad-placeholder-105"> </div>
+                            <!-- End Ezoic - sidebar_middle3 - sidebar_middle -->
+                        </div>
+                        <div class="app_cat_h">Code Validators</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="css-validator.html">CSS Validator</a></li>
+                            <li><a href="javascript-validator.html">Javascript Validator</a></li>
+							<li><a href="json-validator.html">JSON Validator</a></li>
+                            <li><a href="xml-validator.html">XML Validator</a></li>
+							<li><a href="yaml-validator.html">YAML Validator</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_bottom10 - sidebar_bottom -->
+                            <div id="ezoic-pub-ad-placeholder-114"> </div>
+                            <!-- End Ezoic - sidebar_bottom10 - sidebar_bottom -->
+                        </div>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_middle4 - sidebar_middle -->
+                            <div id="ezoic-pub-ad-placeholder-106"> </div>
+                            <!-- End Ezoic - sidebar_middle4 - sidebar_middle -->
+                        </div>
+                        <div class="app_cat_h">Cryptography</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="hash-calculator.html">Hash Calculator</a></li>
+							<li><a href="hmac-generator.html">HMAC Generator</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_middle5 - sidebar_middle -->
+                            <div id="ezoic-pub-ad-placeholder-107"> </div>
+                            <!-- End Ezoic - sidebar_middle5 - sidebar_middle -->
+                        </div>
+						<div class="app_cat_h">Code Editors</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="online-code-editor.html">Online Code Editor</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_top14 - sidebar -->
+                            <div id="ezoic-pub-ad-placeholder-120"> </div>
+                            <!-- End Ezoic - sidebar_top14 - sidebar -->
+                        </div>
+                    	<div class="app_cat_h">String Utilities</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="add-nofollow-to-link.html">Add Nofollow To Link</a></li>
+                            <li><a href="base64-encode-decode.html">Base64 Encode / Decode</a></li>
+							<li><a href="number-converter.html">Binary / Decimal / Hexadecimal / Ascii Converter</a></li>
+                            <li><a href="currency-converter.html">Currency Converter</a></li>
+                            <li><a href="date-calculator.html">Date Calculator</a></li>
+                            <li><a href="diff-viewer.html">Diff viewer</a></li>
+                            <li><a href="html-decoder.html">Html Decoder</a></li>
+                            <li><a href="html-encoder.html">Html Encoder</a></li>
+							<li><a href="lorem-ipsum-generator.html">Lorem Ipsum Generator</a></li>
+                            <li><a href="new-line-counter.html">New Line Counter</a></li>
+							<li><a href="number-to-word-converter.html">Number To Word Converter</a></li>
+							<li><a href="string-utilities.html">String Utilities</a></li>
+                            <li><a href="unix-time-converter.html">Unix Time Converter</a></li>
+                            <li><a href="url-decoder.html">Url Decoder</a></li>
+                            <li><a href="url-encoder.html">Url Encoder</a></li>
+                            <li><a href="word-counter.html">Word Counter</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_middle6 - sidebar_middle -->
+                            <div id="ezoic-pub-ad-placeholder-108"> </div>
+                            <!-- End Ezoic - sidebar_middle6 - sidebar_middle -->
+                        </div>
+                        <div class="app_cat_h">Utilities</div>
+                        <ul class="app_cat_ul">
+                            <li><a href="html-form-builder.html">HTML Form Builder</a></li>
+							<li><a href="base64-to-image-converter.html">Base64 To Image Converter</a></li>
+							<li><a href="favicon-generator.html">Favicon Generator</a></li>
+							<li><a href="htaccess-secure-directory.html">htaccess secure directory</a></li>
+                            <li><a href="htaccess-secure-files.html">htaccess secure files</a></li>
+                            <li><a href="image-to-base64-converter.html">Image To Base64 Converter</a></li>
+							<li><a href="qr-code-generator.html">QR Code Generator</a></li>
+							<li><a href="torrent-decoder.html">Torrent Decoder</a></li>
+							<li><a href="web-hosting-bandwidth-calculator.html">Web Hosting Bandwidth Calculator</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_middle7 - sidebar_middle -->
+                            <div id="ezoic-pub-ad-placeholder-109"> </div>
+                            <!-- End Ezoic - sidebar_middle7 - sidebar_middle -->
+                        </div>
+						<div class="app_cat_h">SEO Tools</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="alexa-rank-checker.html">Alexa Rank Checker</a></li>
+							<li><a href="keyword-density-checker.html">Keyword Density Checker</a></li>
+							<li><a href="redirect-checker.html">Redirect Checker</a></li>
+							<li><a href="site-speed-checker.html">Site Speed Checker</a></li>
+							<li><a href="social-popularity-checker.html">Social Popularity Checker</a></li>
+							<li><a href="text-to-code-ratio-checker.html">Text To Code Ratio Checker</a></li>
+                        </ul>
+                        <div class="text-center">
+                            <!-- Ezoic - sidebar_middle8 - sidebar_middle -->
+                            <div id="ezoic-pub-ad-placeholder-110"> </div>
+                            <!-- End Ezoic - sidebar_middle8 - sidebar_middle -->
+                        </div>
+						<div class="app_cat_h">IP Tools</div>
+                        <ul class="app_cat_ul">
+                        	<li><a href="hostname-lookup.html">Hostname Lookup</a></li>
+							<li><a href="ip-location-finder.html">Ip Location Finder</a></li>
+							<li><a href="mx-lookup.html">MX Lookup</a></li>
+							<li><a href="nameserver-lookup.html">Nameserver Lookup</a></li>
+							<li><a href="open-port-checker.html">Open Port Checker</a></li>
+							<li><a href="site-ip-checker.html">Site Ip Checker</a></li>
+							<li><a href="website-location-finder.html">Website Location Finder</a></li>
+						</ul>
+						<div class="text-center">
+    						<!-- Ezoic - sidebar_bottom11 - sidebar_bottom -->
+                            <div id="ezoic-pub-ad-placeholder-115"> </div>
+                            <!-- End Ezoic - sidebar_bottom11 - sidebar_bottom -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <!-- Ezoic - bottom_of_page - bottom_of_page -->
+                <div id="ezoic-pub-ad-placeholder-111"> </div>
+                <!-- End Ezoic - bottom_of_page - bottom_of_page -->
+            </div>
+        </div>    </div>
+    <div class="footer">© 2022 beautifytools.com All Rights Reserved - <a target="_blank" href="privacy.html">Privacy</a></div><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58701724-9', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/zclip/jquery.zclip.min.js"></script>
+<script src="js/ace/src-min-noconflict/ace.js"></script>
+<script src="js/ace/src-min-noconflict/ext-language_tools.js"></script>
+<script src="js/samples.js"></script>
+<script src="js/common.js"></script>
+<script type='text/javascript' style='display:none;' async>
+__ez.queue.addFile('/detroitchicago/edmonton.webp', '/detroitchicago/edmonton.webp?a=a&cb=0&shcb=34', true, ['/detroitchicago/minneapolis.js'], true, false, false, false);
+__ez.queue.addFile('/porpoiseant/jellyfish.webp', '/porpoiseant/jellyfish.webp?a=a&cb=0&shcb=34', false, [], true, false, false, false);
+</script>
+
+<script>var _audins_dom="beautifytools_com",_audins_did=244621;__ez.queue.addDelayFunc("audins.html","__ez.script.add", "../go.ezoic.net/detroitchicago/audins0d9f.js?cb=195-0");</script><noscript><div style="display:none;"><img src="../pixel.quantserve.com/pixel/p-31iz6hfFutd160253.gif?labels=Domain.beautifytools_com,DomainId.244621" border="0" height="1" width="1" alt="Quantcast"/></div></noscript>
+<script type="text/javascript" data-cfasync="false"></script>
+<script>__ez.queue.addFile('tardisrocinante/vitals.js', 'tardisrocinante/vitals5038.js?gcb=0&amp;cb=3', false, ['/detroitchicago/minneapolis.js'], true, false, true, false);</script>
+<script>__ez.queue.addFile('beardeddragon/drake.js', 'beardeddragon/drake6190.js?gcb=0&amp;cb=4', false, [], true, false, true, false);</script></body>
+<!-- Mirrored from beautifytools.com/samples.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 04 Jun 2022 10:28:22 GMT -->
+</html>
