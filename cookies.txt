@@ -1,0 +1,14 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+beautifytools.com	TRUE	/	FALSE	1999999999	lp_244621	https://beautifytools.com/
+beautifytools.com	TRUE	/	FALSE	1999999999	ezovuuidtime_244621	1654338486
+beautifytools.com	TRUE	/	FALSE	1999999999	ezovuuid_244621	decd8fb2-b622-4f94-7abf-1ac02732a37a
+beautifytools.com	TRUE	/	FALSE	1999999999	ezopvc_244621	1
+.quantserve.com	TRUE	/	FALSE	1999999999	mc	629b33bb-58e92-1a3c4-04456
+beautifytools.com	TRUE	/	FALSE	1999999999	ezoab_244621	mod89
+beautifytools.com	TRUE	/	FALSE	1999999999	ezoadgid_244621	-1
+beautifytools.com	TRUE	/	FALSE	1999999999	ezoref_244621	beautifytools.com
+beautifytools.com	TRUE	/	FALSE	1999999999	ezosuibasgeneris-1	83cecfe5-627e-492c-6fca-c1ead55a3140
+beautifytools.com	TRUE	/	FALSE	1999999999	SameSite	None
+beautifytools.com	TRUE	/	FALSE	1999999999	active_template::244621	pub_site.1654338510
+
